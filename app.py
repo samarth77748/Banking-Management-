@@ -5,11 +5,15 @@ app = Flask(__name__)
 app.secret_key = "secret123"
 
 # Database Connection
+import os
+
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="roshani",
-    database="bankdb"
+    host=os.getenv("DB_HOST"),
+    port=int(os.getenv("DB_PORT", "3306")),
+    user=os.getenv("DB_USER"),
+    password=os.getenv("DB_PASSWORD"),
+    database=os.getenv("DB_NAME", "bankdb"),
+    ssl_ca=os.getenv("DB_SSL_CA")
 )
 
 cursor = db.cursor()
