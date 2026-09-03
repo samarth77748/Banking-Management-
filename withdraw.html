@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Withdraw</title>
+<link rel="stylesheet" href="../static/style.css">
+<script>
+
+var balance = 5000;   // demo balance
+
+function showBalance(){
+
+var acc = document.getElementById("acc").value;
+
+if(acc ==""){
+document.getElementById("msg").innerHTML="Please enter account number first"; 
+return;
+}
+ 
+document.getElementById("balance").innerHTML="Available Balance: ₹" + balance;
+
+}
+
+function withdrawMoney(){
+
+var acc = document.getElementById("acc").value;
+var amount = document.getElementById("amount").value;
+
+if(acc=="" || amount==""){
+document.getElementById("msg").innerHTML="Fill all fields";
+return false;
+}
+
+amount = parseInt(amount);
+
+if(amount >balance){
+document.getElementById("msg").innerHTML="Insufficient Balance";
+return false;
+}
+
+balance = balance - amount;
+
+document.getElementById("msg").innerHTML="Withdrawal Successful";
+document.getElementById("balance").innerHTML="Available Balance: ₹" + balance;
+
+return false;
+
+}
+
+</script>
+    
+
+</head>
+
+<body>
+
+<h2>Withdraw Money</h2>
+
+Account Number<br>
+<input type="number" id="acc"maxlength="10" ><br><br>
+
+<button onclick="showBalance()">Check Available Balance</button>
+
+<h3 id="balance"></h3>
+
+<form onsubmit="return withdrawMoney()">
+
+Amount<br>
+<input type="number" id="amount" required><br><br>
+
+<button type="submit">Withdraw</button>
+
+</form>
+
+<p id="msg"></p>
+
+</body>
+</html>

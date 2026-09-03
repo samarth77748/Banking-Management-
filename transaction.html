@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../static/style.css">
+    <title>Daily Transaction History</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            width: 60%;
+            margin: auto;
+            margin-top: 50px;
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid black;
+        }
+
+        th {
+            background-color: #add8e6;
+        }
+
+        .account-info {
+            font-size: 18px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+
+    <script>
+        function showTransactions() {
+        
+            let date = document.getElementById("date").value;
+
+            if ( date === "") {
+                alert("PLEASE ENTER DATE ")
+                return;
+            }
+
+        
+
+            // Dummy transaction data (replace with backend later)
+            let transactions = [
+                { type: "Deposit", amount: 5000 },
+                { type: "Withdraw", amount: 2000 },
+                { type: "Transfer", amount: 1500 }
+            ];
+
+            let table = document.getElementById("transactionTable");
+            table.innerHTML = "";
+
+            let header = "<tr><th>Transaction Type</th><th>Amount</th></tr>";
+            table.innerHTML += header;
+
+            for (let i = 0; i < transactions.length; i++) {
+                let row = "<tr><td>" + transactions[i].type + "</td><td>" + transactions[i].amount + "</td></tr>";
+                table.innerHTML += row;
+            }
+        }
+    </script>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Daily Transaction History</h2>
+    <form method="POST">
+
+
+    <input type="date" id="date"><br>
+
+    <button type="button"  onclick="showTransactions()">Submit</button>
+
+    <!-- Account Number Display -->
+    <div id="accountDisplay" class="account-info"></div>
+
+    <!-- Transaction Table -->
+    <table id="transactionTable"></table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Balance Enquiry</title>
+    <link rel="stylesheet" href="../static/style.css">
+
+
+    <style>
+        body {
+            text-align: center;
+        }
+
+        /* Center table in middle */
+        #txnTable {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+<h2>Balance Enquiry</h2>
+
+<label>Enter Account Number:</label><br><br>
+<input type="text" id="account_no" maxlength="10"><br><br>
+
+<button onclick="checkBalance()">Check Balance</button>
+
+<h3 id="balance"></h3>
+
+<table border="1" id="txnTable" style="display:none;">
+    <tr>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Date</th>
+    </tr>
+    <tbody id="txnBody"></tbody>
+</table>
+
+<script>
+function checkBalance() {
+    let accNo = document.getElementById("account_no").value;
+
+    if (accNo.length !== 10 || isNaN(accNo)) {
+        alert("Account number must be 10 digits");
+        return;
+    }
+
+    let balance = 8500;
+
+    let transactions = [
+        {type: "Deposit", amount: 1000, date: "2026-03-18"},
+        {type: "Withdraw", amount: 500, date: "2026-03-17"},
+        {type: "Deposit", amount: 2000, date: "2026-03-16"},
+        {type: "Withdraw", amount: 700, date: "2026-03-15"},
+        {type: "Deposit", amount: 1500, date: "2026-03-14"},
+        {type: "Withdraw", amount: 300, date: "2026-03-13"},
+        {type: "Deposit", amount: 1200, date: "2026-03-12"},
+        {type: "Withdraw", amount: 400, date: "2026-03-11"},
+        {type: "Deposit", amount: 900, date: "2026-03-10"},
+        {type: "Withdraw", amount: 600, date: "2026-03-09"}
+    ];
+
+    document.getElementById("balance").innerText =
+        "Available Balance: ₹ " + balance;
+
+    let tbody = document.getElementById("txnBody");
+    tbody.innerHTML = "";
+
+    transactions.forEach(txn => {
+        let row = `<tr>
+            <td>${txn.type}</td>
+            <td>₹ ${txn.amount}</td>
+            <td>${txn.date}</td>
+        </tr>`;
+        tbody.innerHTML += row;
+    });
+
+    document.getElementById("txnTable").style.display = "table";
+}
+</script>
+
+</body>
+</html>

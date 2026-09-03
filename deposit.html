@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cash Deposit</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+
+<h2>Cash Deposit</h2>
+
+<label>Enter Account Number:</label><br><br>
+<input type="text" id="account_no" maxlength="10"><br><br>
+
+<label>Enter Amount (Multiple of 100):</label><br><br>
+<input type="number" id="amount"><br><br>
+
+<button onclick="depositMoney()">Deposit</button>
+
+<h3 id="message"></h3>
+
+<script>
+function depositMoney() {
+    let accNo = document.getElementById("account_no").value;
+    let amount = parseInt(document.getElementById("amount").value);
+
+    // Validation: Account number must be 10 digits
+    if (accNo.length !== 11 || isNaN(accNo)) {
+        document.getElementById("message").innerText =
+            "Account number must be exactly 10 digits";
+        return;
+    }
+
+    // Validation: Amount multiple of 100
+    if (amount % 100 !== 0) {
+        document.getElementById("message").innerText =
+            "Amount must be in multiples of 100";
+        return;
+    }
+
+    // Initial balance = 500
+    let newBalance = 500 + amount;
+
+    document.getElementById("message").innerText =
+        "Deposit Successful! Updated Balance: ₹ " + newBalance;
+}
+</script>
+
+</body>
+</html>

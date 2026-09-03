@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Bank Account</title>
+</head>
+
+<body style="background: linear-gradient(to right, #a8edea, #fed6e3); text-align:center;">
+
+    <h1>Create Bank Account</h1>
+
+    <form action="/create_account" method="POST">
+
+        <label>Account Type:</label><br>
+        <select name="account_type">
+            <option value="savings">Savings</option>
+            <option value="current">Current</option>
+        </select><br><br>
+
+        <label>Account Holder Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Aadhaar Number:</label><br>
+        <input type="text" name="aadhaar"><br><br>
+
+        <label>Mobile Number:</label><br>
+        <input type="text" name="mobile" required><br><br>
+
+        <label>Are you minor?</label><br>
+        <select name="minor">
+            <option value="">Select</option>
+            <option value="no">No</option>
+            <option value="yes">Yes</option>
+        </select><br><br>
+
+        <label>Email ID:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Initial Deposit (Minimum ₹500):</label><br>
+        <input type="number" name="amount" required><br><br>
+
+        <!-- ✅ SUBMIT BUTTON -->
+        <button type="submit">Create Account</button>
+
+    </form>
+
+</body>
+</html>
